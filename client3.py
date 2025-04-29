@@ -340,7 +340,9 @@ def api_status():
 
 if __name__ == "__main__":
     slicer = find_slicer()
-    if not slicer:
+    if slicer:
+        print(f"🛠️ Found slicer: {slicer}")
+    else
         install_prusaslicer()
         slicer = find_slicer()
         if not slicer:
