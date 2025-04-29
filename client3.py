@@ -15,6 +15,7 @@ import subprocess
 PORT= '5001'
 SLICER = "prusa-slicer"
 DEFAULT_CONFIG_FILE = "my_config.ini"
+SLICER_COMMANDS = ["prusa-slicer", "PrusaSlicer", "prusa-slicer-console"]
 
 app = Flask(__name__)
 
