@@ -129,22 +129,26 @@ def scan_for_printers(subnet="192.168.68.0/24"):
 
 
 def find_printer():
+    global PRINTER_IP, PRINTER_TYPE, API_BASE, OCTOPRINT_API_KEY, headers  # Add headers too!
+
     printer_info = scan_for_printers()
     PRINTER_IP = printer_info[0]
     PRINTER_TYPE = printer_info[1]
     
     if PRINTER_TYPE == "moonraker":
         API_BASE = f"http://{PRINTER_IP}:7125"
+        headers = {}  # No extra headers
     elif PRINTER_TYPE == "octoprint":
         API_BASE = f"http://{PRINTER_IP}:5000"
         OCTOPRINT_API_KEY = os.getenv("OCTOPRINT_API_KEY")
+        if OCTOPRINT_API_KEY:
+            headers = {"X-Api-Key": OCTOPRINT_API_KEY}
+        else:
+            headers = {}
     else:
         print("❌ Unknown printer type.")
         sys.exit(1)
 
-headers = {}
-if PRINTER_TYPE == "octoprint" and OCTOPRINT_API_KEY:
-    headers = {"X-Api-Key": OCTOPRINT_API_KEY}
 
 
 def slice_stl_to_gcode(stl_path, config_file=DEFAULT_CONFIG_FILE):
@@ -338,7 +342,7 @@ if __name__ == "__main__":
         slicer = find_slicer()
         if not slicer:
             print("❌ Still no slicer found after attempted install.")
-            NO_SLICER = true
+            NO_SLICER = True
         else:
             print(f"🛠️ Installed and found slicer: {slicer}")
     find_printer()
