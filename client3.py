@@ -13,11 +13,12 @@ from dotenv import load_dotenv
 import subprocess
 import shutil
 
+# Config
 PORT= '5000'
 SLICER = "prusa-slicer"
 DEFAULT_CONFIG_FILE = "my_config.ini"
 SLICER_COMMANDS = ["prusa-slicer", "PrusaSlicer", "prusa-slicer-console"]
-
+REMOTE_UPLOAD_PATH = "gcodes"
 app = Flask(__name__)
 
 # Load environment variables if .env exists
@@ -126,22 +127,20 @@ def scan_for_printers(subnet="192.168.68.0/24"):
             pass
         print("❗ Invalid selection, try again.")
 
-# Config
-REMOTE_UPLOAD_PATH = "gcodes"
 
-# Find Printer
-printer_info = scan_for_printers()
-PRINTER_IP = printer_info[0]
-PRINTER_TYPE = printer_info[1]
-
-if PRINTER_TYPE == "moonraker":
-    API_BASE = f"http://{PRINTER_IP}:7125"
-elif PRINTER_TYPE == "octoprint":
-    API_BASE = f"http://{PRINTER_IP}:5000"
-    OCTOPRINT_API_KEY = os.getenv("OCTOPRINT_API_KEY")
-else:
-    print("❌ Unknown printer type.")
-    sys.exit(1)
+def find_printer():
+    printer_info = scan_for_printers()
+    PRINTER_IP = printer_info[0]
+    PRINTER_TYPE = printer_info[1]
+    
+    if PRINTER_TYPE == "moonraker":
+        API_BASE = f"http://{PRINTER_IP}:7125"
+    elif PRINTER_TYPE == "octoprint":
+        API_BASE = f"http://{PRINTER_IP}:5000"
+        OCTOPRINT_API_KEY = os.getenv("OCTOPRINT_API_KEY")
+    else:
+        print("❌ Unknown printer type.")
+        sys.exit(1)
 
 headers = {}
 if PRINTER_TYPE == "octoprint" and OCTOPRINT_API_KEY:
@@ -342,6 +341,6 @@ if __name__ == "__main__":
             NO_SLICER = true
         else:
             print(f"🛠️ Installed and found slicer: {slicer}")
-
+    find_printer()
     app.run(host="0.0.0.0", port=int(PORT))
 
