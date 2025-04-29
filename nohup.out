@@ -1,0 +1,16 @@
+🔒 Loaded API Token from .env
+
+Use this token for API calls:
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: eb81ad2ddec4b9622a98bfb40e361b57" -d '{"file_path": "Cuboid_PLA_17m.gcode"}' http://localhost:5000/print
+curl -X POST -H "Authorization: eb81ad2ddec4b9622a98bfb40e361b57" http://localhost:5000/stop
+curl -X GET -H "Authorization: eb81ad2ddec4b9622a98bfb40e361b57" http://localhost:5000/status
+
+Scanning network 192.168.68.0/24 for 3D printers...
+
+✅ Found Printers:
+1. moonraker @ 192.168.68.55
+ * Serving Flask app 'client2'
+ * Debug mode: off
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.

