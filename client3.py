@@ -342,10 +342,14 @@ if __name__ == "__main__":
     slicer = find_slicer()
     if slicer:
         print(f"🛠️ Found slicer: {slicer}")
-    else
+    else:
         install_prusaslicer()
         slicer = find_slicer()
         if not slicer:
             print("❌ Still no slicer found after attempted install.")
-            
-    app.run(host="0.0.0.0", port=PORT)
+            NO_SLICER = true
+        else:
+            print(f"🛠️ Installed and found slicer: {slicer}")
+
+    app.run(host="0.0.0.0", port=int(PORT))
+
