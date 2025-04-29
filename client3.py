@@ -60,7 +60,7 @@ def install_prusaslicer():
 
 print(f"\nUse this token for API calls:\n")
 print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:{PORT}/print")
-print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{"file_path": "test.stl", "config_path": "high_speed_config.ini"}' http://localhost:{PORT}/print")
+print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"test.stl", "config_path": "high_speed_config.ini"}}' http://localhost:{PORT}/print")
 print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/stop")
 print(f"curl -X GET -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/status\n")
 
