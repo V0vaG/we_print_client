@@ -11,6 +11,8 @@ import secrets
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 
+PORT = '5001'
+
 app = Flask(__name__)
 
 # Load environment variables if .env exists
@@ -26,9 +28,9 @@ if ENV_TOKEN:
     print(f"🔒 Loaded API Token from .env")
 
 print(f"\nUse this token for API calls:\n")
-print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:5000/print")
-print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:5000/stop")
-print(f"curl -X GET -H \"Authorization: {API_TOKEN}\" http://localhost:5000/status\n")
+print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:{PORT}/print")
+print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/stop")
+print(f"curl -X GET -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/status\n")
 
 def require_token(f):
     def decorated(*args, **kwargs):
@@ -261,4 +263,4 @@ def api_status():
     return jsonify({"printer_status": status}), 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=PORT)

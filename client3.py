@@ -13,6 +13,9 @@ from dotenv import load_dotenv
 import subprocess
 import shutil
 
+
+VERSION = '1.0.0'
+
 # Config
 PORT= '5000'
 SLICER = "prusa-slicer"
@@ -42,7 +45,6 @@ def find_slicer():
 
 def install_prusaslicer():
     print("⚙️ PrusaSlicer not found. Attempting to install...")
-
     try:
         if sys.platform.startswith('linux'):
             subprocess.check_call(["sudo", "apt", "update"])
@@ -60,11 +62,13 @@ def install_prusaslicer():
         print(f"❌ Auto-install failed: {e}")
         sys.exit(1)
 
-print(f"\nUse this token for API calls:\n")
-print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:{PORT}/print")
-print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"test.stl\", \"config_path\": \"high_speed_config.ini\"}}' http://localhost:{PORT}/print")
-print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/stop")
-print(f"curl -X GET -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/status\n")
+def print_commands():
+    print(f"\nUse this token for API calls:\n")
+    print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:{PORT}/print")
+    print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"test.stl\"}}' http://localhost:{PORT}/print")
+    print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"test.stl\", \"config_path\": \"high_speed_config.ini\"}}' http://localhost:{PORT}/print")
+    print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/stop")
+    print(f"curl -X GET -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/status\n")
 
 def require_token(f):
     def decorated(*args, **kwargs):
@@ -333,7 +337,57 @@ def api_status():
         return jsonify({"printer_status": "ready"}), 200
     return jsonify({"printer_status": status}), 200
 
+
+
+def print_help():
+    print(f"    We_Print Client Version: {VERSION}")
+    print(f"""
+    Usage: python3 client3.py [OPTIONS]
+    
+    Options:
+      -v, --version     Show the client version and exit
+      -h, --help        Show this help message and exit
+    
+    Description:
+    This client connects to your 3D printer API server.
+    It can upload G-code files, slice STL files automatically, and manage prints.
+    
+    API Example Usage:
+    
+      ▶ Upload and start a print from an existing G-code file:
+        curl -X POST -H "Content-Type: application/json" -H "Authorization: <API_TOKEN>" \\
+             -d '{{"file_path": "Cuboid_PLA_17m.gcode"}}' http://localhost:<PORT>/print
+    
+      ▶ Upload an STL file, slice it, then start the print:
+        curl -X POST -H "Content-Type: application/json" -H "Authorization: <API_TOKEN>" \\
+             -d '{{"file_path": "test.stl"}}' http://localhost:<PORT>/print
+    
+      ▶ Upload an STL file with config file, slice it, then start the print:
+        curl -X POST -H "Content-Type: application/json" -H "Authorization: <API_TOKEN>" \\
+             -d '{{"file_path": "test.stl", "config_path": "config.ini"}}' http://localhost:<PORT>/print
+    
+      ▶ Stop the current ongoing print:
+        curl -X POST -H "Authorization: <API_TOKEN>" http://localhost:<PORT>/stop
+    
+      ▶ Check printer status (idle, printing, complete, etc.):
+        curl -X GET -H "Authorization: <API_TOKEN>" http://localhost:<PORT>/status
+    
+    Notes:
+    - Replace <API_TOKEN> with your real token generated at server start.
+    - Replace <PORT> with your server port (default 5000).
+    """)
+
+
+
 if __name__ == "__main__":
+    if "-v" in sys.argv or "--version" in sys.argv:
+        print(f"We_Print Client Version: {VERSION}")
+        sys.exit(0)
+
+    if "-h" in sys.argv or "--help" in sys.argv:
+        print_help()
+        sys.exit(0)
+    print_commands()
     slicer = find_slicer()
     if slicer:
         print(f"🛠️ Found slicer: {slicer}")
