@@ -10,6 +10,11 @@ import concurrent.futures
 import secrets
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
+import subprocess
+
+PORT= '5001'
+SLICER = "prusa-slicer"
+DEFAULT_CONFIG_FILE = "my_config.ini"
 
 app = Flask(__name__)
 
@@ -26,9 +31,13 @@ if ENV_TOKEN:
     print(f"🔒 Loaded API Token from .env")
 
 print(f"\nUse this token for API calls:\n")
-print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:5000/print")
-print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:5000/stop")
-print(f"curl -X GET -H \"Authorization: {API_TOKEN}\" http://localhost:5000/status\n")
+print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:{PORT}/print")
+print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/stop")
+print(f"curl -X GET -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/status\n")
+print(f"curl -X POST -H "Content-Type: application/json" -H "Authorization: $API_TOKEN" \
+    -d '{"file_path": "test.stl", "config_path": "high_speed_config.ini"}' \
+    http://localhost:{PORT}/print\n")
+
 
 def require_token(f):
     def decorated(*args, **kwargs):
@@ -49,7 +58,7 @@ def detect_printer_type(ip):
         pass
 
     try:
-        octoprint_response = requests.get(f"http://{ip}:5000/api/version", timeout=3)
+        octoprint_response = requests.get(f"http://{ip}:{PORT}/api/version", timeout=3)
         if octoprint_response.status_code == 200:
             return "octoprint"
     except:
@@ -102,7 +111,7 @@ PRINTER_TYPE = printer_info[1]
 if PRINTER_TYPE == "moonraker":
     API_BASE = f"http://{PRINTER_IP}:7125"
 elif PRINTER_TYPE == "octoprint":
-    API_BASE = f"http://{PRINTER_IP}:5000"
+    API_BASE = f"http://{PRINTER_IP}:{PORT}"
     OCTOPRINT_API_KEY = os.getenv("OCTOPRINT_API_KEY")
 else:
     print("❌ Unknown printer type.")
@@ -112,6 +121,27 @@ headers = {}
 if PRINTER_TYPE == "octoprint" and OCTOPRINT_API_KEY:
     headers = {"X-Api-Key": OCTOPRINT_API_KEY}
 
+
+def slice_stl_to_gcode(stl_path, config_file=DEFAULT_CONFIG_FILE):
+    basename_no_ext = os.path.splitext(os.path.basename(stl_path))[0]
+    gcode_output = f"{basename_no_ext}.gcode"
+
+    cmd = [
+        SLICER,
+        "--slice",
+        "--load", config_file,
+        "--output", gcode_output,
+        stl_path
+    ]
+
+    try:
+        print(f"🛠️ Slicing {stl_path} into {gcode_output} using {config_file}...")
+        subprocess.check_call(cmd)
+        print(f"✅ Sliced successfully: {gcode_output}")
+        return gcode_output
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Slicing failed: {e}")
+        return None
 
 @app.route('/status', methods=['GET'])
 @require_token
@@ -158,6 +188,7 @@ def check_status():
 
     except requests.RequestException:
         return jsonify({"printer_status": "unknown"}), 500
+        
 def upload_gcode(file_path):
     print(f"⬆️ Uploading {file_path} to printer...")
     basename = os.path.basename(file_path)
@@ -221,6 +252,7 @@ def api_print():
         return jsonify({"error": "Missing file_path"}), 400
 
     file_path = data['file_path']
+    config_path = data.get('config_path', DEFAULT_CONFIG_FILE)
 
     if not os.path.exists(file_path):
         print("❌ File does not exist.")
@@ -229,6 +261,18 @@ def api_print():
     if check_status() == "printing":
         print("⚠️ Printer is already printing!")
         return jsonify({"error": "Printer is already printing"}), 409
+
+    ext = os.path.splitext(file_path)[1].lower()
+
+    if ext == ".stl":
+        if not os.path.exists(config_path):
+            print(f"❌ Configuration file '{config_path}' does not exist.")
+            return jsonify({"error": "Config file does not exist"}), 404
+
+        gcode_path = slice_stl_to_gcode(file_path, config_file=config_path)
+        if not gcode_path or not os.path.exists(gcode_path):
+            return jsonify({"error": "Failed to slice STL file"}), 500
+        file_path = gcode_path
 
     basename = upload_gcode(file_path)
     if not basename:
@@ -261,4 +305,4 @@ def api_status():
     return jsonify({"printer_status": status}), 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port={PORT})
