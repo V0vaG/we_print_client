@@ -11,6 +11,7 @@ import secrets
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import subprocess
+import shutil
 
 PORT= '5001'
 SLICER = "prusa-slicer"
