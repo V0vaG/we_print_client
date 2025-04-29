@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 import subprocess
 import shutil
 
-PORT= '5001'
+PORT= '5000'
 SLICER = "prusa-slicer"
 DEFAULT_CONFIG_FILE = "my_config.ini"
 SLICER_COMMANDS = ["prusa-slicer", "PrusaSlicer", "prusa-slicer-console"]
