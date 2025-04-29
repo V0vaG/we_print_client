@@ -145,7 +145,7 @@ PRINTER_TYPE = printer_info[1]
 if PRINTER_TYPE == "moonraker":
     API_BASE = f"http://{PRINTER_IP}:7125"
 elif PRINTER_TYPE == "octoprint":
-    API_BASE = f"http://{PRINTER_IP}:{PORT}"
+    API_BASE = f"http://{PRINTER_IP}:5000"
     OCTOPRINT_API_KEY = os.getenv("OCTOPRINT_API_KEY")
 else:
     print("❌ Unknown printer type.")
