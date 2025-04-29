@@ -30,6 +30,34 @@ else:
 if ENV_TOKEN:
     print(f"🔒 Loaded API Token from .env")
 
+
+def find_slicer():
+    for slicer in SLICER_COMMANDS:
+        if shutil.which(slicer):
+            return slicer
+    return None
+
+def install_prusaslicer():
+    print("⚙️ PrusaSlicer not found. Attempting to install...")
+
+    try:
+        if sys.platform.startswith('linux'):
+            subprocess.check_call(["sudo", "apt", "update"])
+            subprocess.check_call(["sudo", "apt", "install", "-y", "prusa-slicer"])
+        elif sys.platform == "darwin":
+            subprocess.check_call(["brew", "install", "--cask", "prusaslicer"])
+        elif sys.platform == "win32":
+            print("❗ Please manually install PrusaSlicer from:")
+            print("   https://www.prusa3d.com/page/prusaslicer_424/")
+            sys.exit(1)
+        else:
+            print("❌ Unsupported OS. Please install PrusaSlicer manually.")
+            sys.exit(1)
+    except Exception as e:
+        print(f"❌ Auto-install failed: {e}")
+        sys.exit(1)
+
+
 print(f"\nUse this token for API calls:\n")
 print(f"curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: {API_TOKEN}\" -d '{{\"file_path\": \"Cuboid_PLA_17m.gcode\"}}' http://localhost:{PORT}/print")
 print(f"curl -X POST -H \"Authorization: {API_TOKEN}\" http://localhost:{PORT}/stop")
@@ -305,4 +333,11 @@ def api_status():
     return jsonify({"printer_status": status}), 200
 
 if __name__ == "__main__":
+    slicer = find_slicer()
+    if not slicer:
+        install_prusaslicer()
+        slicer = find_slicer()
+        if not slicer:
+            print("❌ Still no slicer found after attempted install.")
+            
     app.run(host="0.0.0.0", port={PORT})
