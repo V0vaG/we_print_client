@@ -13,6 +13,7 @@ import subprocess
 import shutil
 import threading
 import time
+import signal
 from dotenv import load_dotenv, set_key
 
 VERSION = '1.0.0'
@@ -28,6 +29,44 @@ SLICER_COMMANDS = ["prusa-slicer", "PrusaSlicer", "prusa-slicer-console"]
 REMOTE_UPLOAD_PATH = "gcodes"
 app = Flask(__name__)
 
+import os
+import signal
+import subprocess
+
+def kill_process_on_port_prompt(port=5000):
+    try:
+        # Use lsof to find processes using the port
+        result = subprocess.run(
+            ["lsof", "-i", f":{port}"],
+            capture_output=True,
+            text=True
+        )
+
+        lines = result.stdout.strip().split('\n')
+        if len(lines) < 2:
+            print(f"✅ No process is using port {port}.")
+            return
+
+        print(f"🔍 Processes using port {port}:")
+        for line in lines[1:]:
+            parts = line.split()
+            if len(parts) >= 2:
+                pid = parts[1]
+                command = parts[0]
+                print(f"🔧 PID: {pid}, Command: {command}")
+                answer = input(f"❓ Kill PID {pid} ({command})? [y/N]: ").strip().lower()
+                if answer == 'y':
+                    try:
+                        os.kill(int(pid), signal.SIGKILL)
+                        print(f"✅ Killed process {pid}")
+                    except Exception as kill_err:
+                        print(f"❌ Failed to kill process {pid}: {kill_err}")
+                else:
+                    print(f"⏭️ Skipped killing process {pid}")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+kill_process_on_port_prompt(PORT)
 
 
 def load_env_vars():
